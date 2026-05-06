@@ -1,4 +1,4 @@
-import ExportPanel from '../ExportPanel'
+﻿import ExportPanel from '../ExportPanel'
 import { toneOptions } from './generatedDocument.types'
 import type { GeneratedDocumentEditor } from './useGeneratedDocumentEditor'
 
@@ -53,8 +53,13 @@ function GeneratedDocumentSidebar({ editor }: GeneratedDocumentSidebarProps) {
   } = editor
 
   return (
-    <aside className="sticky top-6 h-fit max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-stone-200 bg-white p-5 shadow-[0_20px_60px_rgba(28,25,23,0.07)]">
-      <PanelTitle>Document actions</PanelTitle>
+    <aside className="sticky top-6 h-fit max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[32px] border border-stone-200/80 bg-white p-5 shadow-[0_20px_60px_rgba(28,25,23,0.07)]">
+      <div className="rounded-[26px] bg-stone-50 px-4 py-4">
+        <PanelTitle>Document actions</PanelTitle>
+        <p className="mt-2 text-sm leading-6 text-stone-500">
+          Save, review, summarize, compare, correct, and export the current draft.
+        </p>
+      </div>
 
       <div className="mt-5 space-y-3">
         <PrimaryButton onClick={handleSaveDocument} disabled={isSaving}>
@@ -227,8 +232,9 @@ function GeneratedDocumentSidebar({ editor }: GeneratedDocumentSidebarProps) {
         {voiceError && <ErrorBox message={voiceError} />}
 
         {isListeningCorrection && (
-          <div className="mt-4 rounded-[18px] border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-600">
-            Listening continuously... speak your correction request, then press
+          <div className="mt-4 flex items-center gap-3 rounded-[18px] border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-600">
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-red-500" />
+            Listening continuously. Speak your correction request, then press
             Stop listening.
           </div>
         )}
@@ -300,7 +306,7 @@ function PanelSection({
   return (
     <div className="mt-8 border-t border-stone-200 pt-6">
       <PanelTitle>{title}</PanelTitle>
-      <div className="mt-5 rounded-[24px] border border-stone-200 bg-stone-50 p-4">
+      <div className="mt-5 rounded-[24px] border border-stone-200/80 bg-stone-50 p-4">
         {children}
       </div>
     </div>
@@ -323,7 +329,7 @@ function PrimaryButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex h-11 w-full items-center justify-center rounded-full bg-stone-950 px-5 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`inline-flex h-11 w-full items-center justify-center rounded-full bg-stone-950 px-5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 ${className}`}
     >
       {children}
     </button>
@@ -363,7 +369,7 @@ function ResultCard({
   children: React.ReactNode
 }) {
   return (
-    <div className="rounded-[22px] border border-stone-200 bg-white p-5">
+    <div className="rounded-[24px] border border-stone-200/80 bg-white p-5 shadow-sm">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-stone-400">
           {title}
@@ -391,7 +397,10 @@ function ReviewList({ title, items }: { title: string; items: string[] }) {
       </p>
       <ul className="mt-2 space-y-1 text-sm leading-6 text-stone-600">
         {items.map((item) => (
-          <li key={item}>• {item}</li>
+          <li key={item} className="flex gap-2">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-stone-400" />
+            <span>{item}</span>
+          </li>
         ))}
       </ul>
     </div>

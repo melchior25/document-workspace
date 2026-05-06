@@ -1,4 +1,4 @@
-import type { GeneratedDocumentEditor } from './useGeneratedDocumentEditor'
+﻿import type { GeneratedDocumentEditor } from './useGeneratedDocumentEditor'
 
 type GeneratedDocumentCanvasProps = {
   editor: GeneratedDocumentEditor
@@ -27,17 +27,24 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
   } = editor
 
   return (
-    <div className="rounded-[36px] border border-stone-200 bg-[#eee8dd] p-4 shadow-[0_24px_80px_rgba(28,25,23,0.08)]">
-      <div className="rounded-[30px] bg-white px-7 py-9 shadow-[0_26px_90px_rgba(28,25,23,0.10)] md:px-10">
-        <div className="mx-auto max-w-[860px]">
+    <div className="rounded-[38px] border border-stone-200/80 bg-[#eee8dd] p-4 shadow-[0_24px_80px_rgba(28,25,23,0.08)]">
+      <div className="rounded-[32px] bg-white px-6 py-8 shadow-[0_26px_90px_rgba(28,25,23,0.10)] md:px-10 md:py-10">
+        <div className="mx-auto max-w-[880px]">
           <div className="border-b border-stone-200 pb-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-stone-400">
-              Professional Draft
-            </p>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-stone-400">
+                Professional Draft
+              </p>
+
+              <span className="rounded-full bg-stone-50 px-3 py-1.5 text-xs font-semibold text-stone-500 ring-1 ring-stone-200">
+                {editableSections.length} sections
+              </span>
+            </div>
 
             <input
               value={title}
               onChange={(event) => setTitle(event.target.value)}
+              aria-label="Document title"
               className="mt-5 w-full border-none bg-transparent text-[38px] font-semibold leading-[1.08] tracking-[-0.045em] text-stone-950 outline-none md:text-[44px]"
             />
 
@@ -65,7 +72,8 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
             <textarea
               value={summary}
               onChange={(event) => setSummary(event.target.value)}
-              className="mt-4 min-h-[170px] w-full resize-y rounded-[24px] border border-stone-200 bg-stone-50 px-6 py-5 text-[15px] leading-8 text-stone-700 outline-none transition focus:border-stone-300 focus:bg-white focus:shadow-[0_12px_36px_rgba(28,25,23,0.06)]"
+              aria-label="Executive summary"
+              className="mt-4 min-h-[170px] w-full resize-y rounded-[26px] border border-stone-200 bg-stone-50 px-6 py-5 text-[15px] leading-8 text-stone-700 outline-none transition focus:border-stone-300 focus:bg-white focus:shadow-[0_12px_36px_rgba(28,25,23,0.06)]"
             />
           </div>
 
@@ -77,8 +85,14 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
               return (
                 <section
                   key={`${section.heading}-${index}`}
-                  className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-[0_12px_34px_rgba(28,25,23,0.04)] transition hover:border-stone-300"
+                  className="rounded-[30px] border border-stone-200/90 bg-white p-5 shadow-[0_12px_34px_rgba(28,25,23,0.04)] transition hover:border-stone-300"
                 >
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <span className="rounded-full bg-stone-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-stone-400 ring-1 ring-stone-200">
+                      Section {index + 1}
+                    </span>
+                  </div>
+
                   <input
                     value={section.heading}
                     onChange={(event) =>
@@ -88,6 +102,7 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
                         event.target.value,
                       )
                     }
+                    aria-label={`Section ${index + 1} heading`}
                     className="w-full border-b border-stone-200 bg-transparent pb-4 text-[22px] font-semibold tracking-[-0.03em] text-stone-950 outline-none"
                   />
 
@@ -103,11 +118,12 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
                     onSelect={(event) => handleSectionTextSelect(index, event)}
                     onMouseUp={(event) => handleSectionTextSelect(index, event)}
                     onKeyUp={(event) => handleSectionTextSelect(index, event)}
+                    aria-label={`Section ${index + 1} content`}
                     className="mt-5 min-h-[220px] w-full resize-y border-none bg-transparent text-[15px] leading-8 text-stone-700 outline-none placeholder:text-stone-400"
                   />
 
-                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-xs leading-6 text-stone-400">
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[22px] bg-stone-50 px-4 py-3">
+                    <p className="text-xs leading-6 text-stone-500">
                       {hasSelection
                         ? `Selected text ready for ${selectedTone} improvement.`
                         : 'Select text inside this section to enable inline improvement.'}
@@ -154,7 +170,8 @@ function GeneratedDocumentCanvas({ editor }: GeneratedDocumentCanvasProps) {
             <textarea
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
-              className="mt-4 min-h-[190px] w-full resize-y rounded-[24px] border border-stone-200 bg-stone-50 px-6 py-5 text-[15px] leading-8 text-stone-700 outline-none transition focus:border-stone-300 focus:bg-white focus:shadow-[0_12px_36px_rgba(28,25,23,0.06)]"
+              aria-label="Final notes"
+              className="mt-4 min-h-[190px] w-full resize-y rounded-[26px] border border-stone-200 bg-stone-50 px-6 py-5 text-[15px] leading-8 text-stone-700 outline-none transition focus:border-stone-300 focus:bg-white focus:shadow-[0_12px_36px_rgba(28,25,23,0.06)]"
             />
           </div>
         </div>
