@@ -13,3 +13,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+step_*_snapshot.txt
+frontend/step_*_snapshot.txt
