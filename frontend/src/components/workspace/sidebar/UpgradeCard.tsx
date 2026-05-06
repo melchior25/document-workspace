@@ -1,17 +1,17 @@
-function UpgradeCard() {
+﻿function UpgradeCard() {
   return (
-    <div className="mt-auto rounded-[28px] border border-stone-200 bg-white p-5 shadow-sm">
-      <p className="text-sm font-semibold text-stone-900">
-        Unlock more templates
-      </p>
+    <div className="rounded-[26px] border border-stone-200/80 bg-white p-5 shadow-sm">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm font-semibold text-stone-950">Workspace status</p>
+        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-emerald-700">
+          Ready
+        </span>
+      </div>
 
-      <p className="mt-2 text-sm text-stone-500">
-        Access premium layouts and richer document structures.
+      <p className="mt-2 text-sm leading-6 text-stone-500">
+        Generate, edit, review, compare, save, and export documents from one
+        guided workspace.
       </p>
-
-      <button className="mt-4 h-11 w-full rounded-2xl bg-stone-900 text-sm font-semibold text-white hover:bg-stone-800">
-        Upgrade
-      </button>
     </div>
   )
 }

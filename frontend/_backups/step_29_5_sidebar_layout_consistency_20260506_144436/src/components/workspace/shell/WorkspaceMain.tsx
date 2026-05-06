@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import TemplateCategoryTabs from '../categories/TemplateCategoryTabs'
 import WorkspaceIntro from '../intro/WorkspaceIntro'
 import TemplateGrid from '../templates/TemplateGrid'
@@ -151,8 +151,8 @@ function WorkspaceMain() {
   }
 
   return (
-    <main className="min-w-0 flex-1 overflow-y-auto bg-[#fdfcfb] px-5 py-5 md:px-8 lg:px-10">
-      <div className="mx-auto w-full max-w-[1380px] pb-14">
+    <main className="flex-1 overflow-y-auto bg-white px-6 py-6 md:px-8">
+      <div className="mx-auto w-full max-w-[1360px] pb-16">
         <WorkspaceTopbar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -160,7 +160,7 @@ function WorkspaceMain() {
 
         {currentStep === 'grid' && (
           <>
-            <div className="mt-8">
+            <div className="mt-9">
               <WorkspaceIntro />
             </div>
 
@@ -185,7 +185,7 @@ function WorkspaceMain() {
         )}
 
         {currentStep === 'preview' && selectedTemplate && (
-          <div className="mt-8">
+          <div className="mt-9">
             <TemplatePreviewView
               template={selectedTemplate}
               onBack={handleBackToTemplates}
@@ -195,7 +195,7 @@ function WorkspaceMain() {
         )}
 
         {currentStep === 'input-mode' && selectedTemplate && (
-          <div className="mt-8">
+          <div className="mt-9">
             <TemplateInputModeView
               template={selectedTemplate}
               onBack={handleBackToPreview}
@@ -205,7 +205,7 @@ function WorkspaceMain() {
         )}
 
         {currentStep === 'prompt-input' && selectedTemplate && (
-          <div className="mt-8">
+          <div className="mt-9">
             <PromptInputView
               template={selectedTemplate}
               onBack={handleBackToInputModes}
@@ -215,7 +215,7 @@ function WorkspaceMain() {
         )}
 
         {currentStep === 'document-upload' && selectedTemplate && (
-          <div className="mt-8">
+          <div className="mt-9">
             <DocumentUploadView
               template={selectedTemplate}
               onBack={handleBackToInputModes}
@@ -227,7 +227,7 @@ function WorkspaceMain() {
         {currentStep === 'generation-prep' &&
           selectedTemplate &&
           selectedInputMode && (
-            <div className="mt-8">
+            <div className="mt-9">
               <GenerationPrepView
                 template={selectedTemplate}
                 inputMode={selectedInputMode}
@@ -243,7 +243,7 @@ function WorkspaceMain() {
         {currentStep === 'generation-loading' &&
           selectedTemplate &&
           selectedInputMode && (
-            <div className="mt-8">
+            <div className="mt-9">
               <GenerationLoadingView
                 template={selectedTemplate}
                 inputMode={selectedInputMode}
@@ -252,7 +252,7 @@ function WorkspaceMain() {
           )}
 
         {currentStep === 'generated-document' && generatedDocument && (
-          <div className="mt-8">
+          <div className="mt-9">
             <GeneratedDocumentView
               document={generatedDocument}
               onBack={handleBackFromGeneratedDocument}
